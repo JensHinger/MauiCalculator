@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Calculator.Views.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Grid ColumnDefinitions=".25*, .25*,.25*, .1*"
+                  RowDefinitions="auto, auto, auto, auto, auto, auto">
+                <Label 
+                    Text="4000"
+                    BackgroundColor="Gray"
+                    FontSize="Large"
+                    Grid.ColumnSpan="4"
+                    Grid.Row="0"
+                    />
+
+                <Button
+                    Text="7"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+
+                <Button
+                    Text="4"
+                    Grid.Row="3"
+                    Grid.Column="0"/>
+
+                <Button
+                    Text="8"
+                    Grid.Row="2"
+                    Grid.Column="1"/>
+
+                <Button
+                    Text="1"
+                    Grid.Row="4"
+                    Grid.Column="0"/>
+
+                <Button
+                    Text="5"
+                    Grid.Row="3"
+                    Grid.Column="1"/>
+
+                <Button
+                    Text="2"
+                    Grid.Row="4"
+                    Grid.Column="1"/>
+
+                <Button
+                     Text="0"
+                     Grid.Row="5"
+                     Grid.Column="1"/>
+
+                <Button
+                    Text="9"
+                    Grid.Row="2"
+                    Grid.Column="2"/>
+
+                <Button
+                    Text="6"
+                    Grid.Row="3"
+                    Grid.Column="2"/>
+
+                <Button
+                    Text="3"
+                    Grid.Row="4"
+                    Grid.Column="2"/>
+
+                <Button
+                    Text=","
+                    Grid.Row="5"
+                    Grid.Column="2"/>
+
+                <Button
+                    Text="/"
+                    Grid.Row="1"
+                    Grid.Column="3"/>
+
+                <Button
+                    Text="*"
+                    Grid.Row="2"
+                    Grid.Column="3"/>
+
+                <Button
+                    Text="-"
+                    Grid.Row="3"
+                    Grid.Column="3"/>
+
+                <Button
+                    Text="+"
+                    Grid.Row="4"
+                    Grid.Column="3"/>
+
+                <Button
+                    Text="="
+                    Grid.Row="5"
+                    Grid.Column="3"/>
+
+            </Grid>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
