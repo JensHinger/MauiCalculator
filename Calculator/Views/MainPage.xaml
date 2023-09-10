@@ -12,92 +12,108 @@
             <Grid ColumnDefinitions=".25*, .25*,.25*, .1*"
                   RowDefinitions="auto, auto, auto, auto, auto, auto">
                 <Label 
+                    x:Name="equation"
                     Text="4000"
                     BackgroundColor="Gray"
                     FontSize="Large"
                     Grid.ColumnSpan="4"
-                    Grid.Row="0"
-                    />
+                    Grid.Row="0"/>
 
                 <Button
                     Text="7"
                     Grid.Row="2"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="4"
                     Grid.Row="3"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="8"
                     Grid.Row="2"
-                    Grid.Column="1"/>
+                    Grid.Column="1"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="1"
                     Grid.Row="4"
-                    Grid.Column="0"/>
+                    Grid.Column="0"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="5"
                     Grid.Row="3"
-                    Grid.Column="1"/>
+                    Grid.Column="1"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="2"
                     Grid.Row="4"
-                    Grid.Column="1"/>
+                    Grid.Column="1"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                      Text="0"
                      Grid.Row="5"
-                     Grid.Column="1"/>
+                     Grid.Column="1"
+                     Clicked="ExtendEquation"/>
 
                 <Button
                     Text="9"
                     Grid.Row="2"
-                    Grid.Column="2"/>
+                    Grid.Column="2"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="6"
                     Grid.Row="3"
-                    Grid.Column="2"/>
+                    Grid.Column="2"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="3"
                     Grid.Row="4"
-                    Grid.Column="2"/>
+                    Grid.Column="2"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text=","
                     Grid.Row="5"
-                    Grid.Column="2"/>
+                    Grid.Column="2"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="/"
                     Grid.Row="1"
-                    Grid.Column="3"/>
+                    Grid.Column="3"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="*"
                     Grid.Row="2"
-                    Grid.Column="3"/>
+                    Grid.Column="3"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="-"
                     Grid.Row="3"
-                    Grid.Column="3"/>
+                    Grid.Column="3"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="+"
                     Grid.Row="4"
-                    Grid.Column="3"/>
+                    Grid.Column="3"
+                    Clicked="ExtendEquation"/>
 
                 <Button
                     Text="="
                     Grid.Row="5"
-                    Grid.Column="3"/>
+                    Grid.Column="3"
+                    Clicked="ExtendEquation"/>
 
             </Grid>
             
