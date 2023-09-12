@@ -18,19 +18,18 @@ public partial class MainPage : ContentPage
         string[] operators = { "+", "-", "*", "/" };
         string joinedOperators = string.Join("", operators);
 
-        // Return is lastPart contains a ","
-        if (extension == "," && lastPart.Contains(',')) return;
+        // No number should have two "," and no comma should be before a number
+        if (extension == "," && (lastPart.Contains(',') || joinedOperators.Contains(lastPart))) return;
 
         // if current input is an operator
         if (joinedOperators.Contains(extension))
         {
-            // Return if last part is also an operator
-            if (joinedOperators.Contains(lastPart)) return;
+            // Return if last part is also an operator except for "-"
+            if (joinedOperators.Contains(lastPart) && !(extension == "-")) return;
 
-            // If equation contains operator and current symbol was either "+-*/" don't add
-            // but solve the current equation and add it afterwards
             foreach (string op in operators){
-                if (equation.Text.Contains(op))
+                // Solve equation if equation contains an operator and the lastPart is not an operator
+                if (equation.Text.Contains(op) && !joinedOperators.Contains(lastPart))
                 { 
                     SolveEquation();
                 }
@@ -39,7 +38,14 @@ public partial class MainPage : ContentPage
             extension = $" {extension} ";
         }
 
-        equation.Text += extension;
+        if (equation.Text == "0" && extension != "," && extension != " - ")
+        {
+            equation.Text = extension;
+        } 
+        else
+        {
+            equation.Text += extension;
+        }
     }
     
     private void ClickedSolve(object sender, EventArgs e)

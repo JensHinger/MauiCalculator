@@ -13,7 +13,7 @@
                   RowDefinitions="auto, auto, auto, auto, auto, auto">
                 <Label 
                     x:Name="equation"
-                    Text="4000"
+                    Text="0"
                     BackgroundColor="Gray"
                     FontSize="Large"
                     Grid.ColumnSpan="4"
