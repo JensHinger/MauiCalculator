@@ -71,17 +71,36 @@ public partial class MainPage : ContentPage
 
     private void SolveEquation()
     {
-        // does not work with negativ numbers currently
         String[] equation_parts = equation.Text.Split(" ");
-        
+        float first_number = float.PositiveInfinity;
+        float second_number = float.PositiveInfinity;
+        string operation = default;
 
-        float first_number = float.Parse(equation.Text.Split(' ')[0], CultureInfo.InvariantCulture.NumberFormat);
 
-        string operation = equation.Text.Split(' ')[1];
-        operation = Regex.Replace(operation, @"\s+", "");
+        for(int i = 0; i < equation_parts.Length; i++)
+        {
+            float temp_number;
 
-        float second_number = float.Parse(equation.Text.Split(' ').Last(), CultureInfo.InvariantCulture.NumberFormat);
+            if (equation_parts[i] == " - " && float.TryParse(equation_parts[i + 1], out temp_number))
+            {
+                var fmt = new NumberFormatInfo();
+                fmt.NegativeSign = "-";
+                temp_number = float.Parse(equation_parts[i + 1], fmt);
 
+                i++;
+            } else if (float.TryParse(equation_parts[i], out temp_number)) { } 
+            else
+            {
+                operation = Regex.Replace(equation_parts[i], @"\s+", "");
+                continue;
+            }
+
+
+            if (first_number == float.PositiveInfinity) first_number = temp_number;
+            else second_number = temp_number;
+        }
+
+        // This should be fine
         float solution = DoOperation(first_number, operation, second_number);
         equation.Text = solution.ToString();
     }
