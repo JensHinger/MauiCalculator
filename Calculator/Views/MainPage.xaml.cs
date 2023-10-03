@@ -1,4 +1,5 @@
 ﻿using Calculator.Models;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.ExceptionServices;
@@ -43,7 +44,7 @@ public partial class MainPage : ContentPage
             extension = $" {extension} ";
         }
 
-        if (equation.Text == "0" && extension != "," && extension != " - ")
+        if (equation.Text == "O" && extension != "," && extension != " - ")
         {
             equation.Text = extension;
         } 
@@ -57,6 +58,7 @@ public partial class MainPage : ContentPage
     {
         // Equation will always either be only a number (20,55) or
         // a equation with two values and one operator(20,55 + 10,5)
+        // Values can also be negativ (-20 * -2)
         string lastOperator = Regex.Replace(equation.Text.Split(' ').Last(), @"\s+", "");
 
         if (joinedOperators.Contains(lastOperator))
@@ -76,25 +78,31 @@ public partial class MainPage : ContentPage
         float second_number = float.PositiveInfinity;
         string operation = default;
 
-
-        for(int i = 0; i < equation_parts.Length; i++)
+        for (int i = 0; i < equation_parts.Length; i++)
         {
             float temp_number;
 
-            if (equation_parts[i] == " - " && float.TryParse(equation_parts[i + 1], out temp_number))
+            if (equation_parts[i] == ""){
+                // I am not sure why this happens -> literally an empty string in the equation_parts list
+                Debug.WriteLine("Empty Space @ " + i);
+                continue;
+            } 
+            else if (equation_parts[i] == "-" && float.TryParse(equation_parts[i + 1], out _))
             {
-                var fmt = new NumberFormatInfo();
-                fmt.NegativeSign = "-";
+                var fmt = new NumberFormatInfo
+                {
+                    NegativeSign = "-"
+                };
                 temp_number = float.Parse(equation_parts[i + 1], fmt);
 
                 i++;
             } else if (float.TryParse(equation_parts[i], out temp_number)) { } 
             else
             {
-                operation = Regex.Replace(equation_parts[i], @"\s+", "");
+                operation = equation_parts[i];
+                Debug.WriteLine("Operator @ " + i + operation);
                 continue;
             }
-
 
             if (first_number == float.PositiveInfinity) first_number = temp_number;
             else second_number = temp_number;
@@ -107,6 +115,8 @@ public partial class MainPage : ContentPage
 
     private float DoOperation(float num1, string operation, float num2)
     {
+        Debug.WriteLine(num1.ToString() + "   " + operation + "   " + num2.ToString());
+
         switch (operation)
         {
             case "+": return num1 + num2;
