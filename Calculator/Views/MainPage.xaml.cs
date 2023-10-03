@@ -30,21 +30,29 @@ public partial class MainPage : ContentPage
         // if current input is an operator
         if (joinedOperators.Contains(extension))
         {
-            // Return if last part is also an operator except for "-"
+            // Return if last part is also an operator except for "-" and 
             if (joinedOperators.Contains(lastPart) && !(extension == "-")) return;
 
-            foreach (string op in operators){
+            foreach (string equation_part in equation.Text.Split(" ")){
                 // Solve equation if equation contains an operator and the lastPart is not an operator
-                if (equation.Text.Contains(op) && !joinedOperators.Contains(lastPart))
+                if (joinedOperators.Contains(equation_part) && !joinedOperators.Contains(lastPart))
                 { 
                     SolveEquation();
                 }
             }
-            // If we add a operator add empty space left and right of operator
-            extension = $" {extension} ";
+
+            // If we add a operator add empty space left and right of operator 
+            if (joinedOperators.Contains(lastPart) || lastPart == "0")
+            {
+                extension = $"{extension}";
+            } else
+            {
+                extension = $" {extension} ";
+            }
+            
         }
 
-        if (equation.Text == "O" && extension != "," && extension != " - ")
+        if (equation.Text == "0" && extension != ",")
         {
             equation.Text = extension;
         } 
@@ -87,13 +95,13 @@ public partial class MainPage : ContentPage
                 Debug.WriteLine("Empty Space @ " + i);
                 continue;
             } 
-            else if (equation_parts[i] == "-" && float.TryParse(equation_parts[i + 1], out _))
+            else if (equation_parts[i][0] == '-' && float.TryParse(equation_parts[i], out _))
             {
                 var fmt = new NumberFormatInfo
                 {
                     NegativeSign = "-"
                 };
-                temp_number = float.Parse(equation_parts[i + 1], fmt);
+                temp_number = float.Parse(equation_parts[i], fmt);
 
                 i++;
             } else if (float.TryParse(equation_parts[i], out temp_number)) { } 
