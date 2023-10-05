@@ -21,11 +21,13 @@ public partial class MainPage : ContentPage
     private void ExtendEquation(object sender, EventArgs e)
     {
         string extension = ((Button)sender).Text;
-        string lastPart = equation.Text.Split(' ').Last();
-        
+        string lastPart = equation.Text.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries).Last();
+
+        Debug.WriteLine("Lastpart " + lastPart + " |");
 
         // No number should have two "," and no comma should be before a number
         if (extension == "," && (lastPart.Contains(',') || joinedOperators.Contains(lastPart))) return;
+        else if (extension == "-" && lastPart == "-" && !equation.Text.EndsWith(' ')) return;
 
         // if current input is an operator
         if (joinedOperators.Contains(extension))
@@ -89,21 +91,21 @@ public partial class MainPage : ContentPage
         for (int i = 0; i < equation_parts.Length; i++)
         {
             float temp_number;
+            Debug.WriteLine(equation_parts[i]);
 
             if (equation_parts[i] == ""){
                 // I am not sure why this happens -> literally an empty string in the equation_parts list
-                Debug.WriteLine("Empty Space @ " + i);
                 continue;
             } 
             else if (equation_parts[i][0] == '-' && float.TryParse(equation_parts[i], out _))
             {
+
                 var fmt = new NumberFormatInfo
                 {
                     NegativeSign = "-"
                 };
                 temp_number = float.Parse(equation_parts[i], fmt);
 
-                i++;
             } else if (float.TryParse(equation_parts[i], out temp_number)) { } 
             else
             {
